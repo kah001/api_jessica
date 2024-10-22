@@ -21,7 +21,9 @@ endpoints.post('/projeto', autenticar, async (req, resp) => {
 
 endpoints.get('/projeto', autenticar, async (req, resp) => {
     try {
+        let registros = await service.consultarProjetoService()
 
+        resp.send(registros)
     }
     catch (err) {
         resp.status(400).send({
@@ -33,6 +35,9 @@ endpoints.get('/projeto', autenticar, async (req, resp) => {
 endpoints.get('/projeto/:id', autenticar, async (req, resp) => {
     try {
         let id = req.params.id
+        let registros = await service.consultarProjetoPorIdService(id)
+
+        resp.send(registros)
     }
     catch (err) {
         resp.status(400).send({

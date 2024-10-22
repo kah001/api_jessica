@@ -6,6 +6,18 @@ export async function inserirProjetoService(projeto) {
     return id
 }
 
+export async function consultarProjetoService() {
+    let registros = await db.consultarProjeto()
+
+    return registros
+}
+
+export async function consultarProjetoPorIdService(id) {
+    let registros = await db.consultarProjetoPorId(id)
+
+    return registros
+}
+
 export async function alterarProjetoService(projeto, id) {
     let linhasAfetadas = await db.alterarProjeto(projeto, id)
 
