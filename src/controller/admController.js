@@ -7,9 +7,17 @@ const endpoints = Router()
 endpoints.post('/adm', async (req, resp) => {
     try {
         let adm = req.body
-        await service.inserirAdmService(adm)
+        let linhasAfetadas = await service.inserirAdmService(adm)
 
-        resp.send()
+        if (linhasAfetadas >= 1) {
+            resp.send({
+                novoAdm: 'ADM adicionado com sucesso!'
+            })
+        } else {
+            resp.status(404).send({
+                erro: 'Nenhum registro encontrado'
+            })
+        }
 
     }
     catch (err) {
