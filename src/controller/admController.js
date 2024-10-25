@@ -9,7 +9,15 @@ endpoints.post('/adm', async (req, resp) => {
         let adm = req.body
         let linhasAfetadas = await service.inserirAdmService(adm)
 
-        resp.send(linhasAfetadas)
+        if (linhasAfetadas >= 1) {
+            resp.send({
+                novoAdm: 'ADM adicionado com sucesso!'
+            })
+        } else {
+            resp.status(404).send({
+                erro: 'Nenhum registro encontrado'
+            })
+        }
 
     }
     catch (err) {
