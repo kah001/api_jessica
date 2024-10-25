@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const endpoints = Router();
 
-endpoints.post('/andamento', autenticar, async (req, resp) => {
+endpoints.post('/projeto/andamento', autenticar, async (req, resp) => {
     try {
         let projetoAndamento = req.body;
         let id = await service.inserirProjetoAndamentoService(projetoAndamento);

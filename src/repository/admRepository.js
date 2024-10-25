@@ -9,7 +9,7 @@ export async function inserirAdm(adm) {
     let registros = await con.query(comando, [adm.nome, adm.senha])
     let info = registros[0]
 
-    return info
+    return info.affectedRows
 }
 
 

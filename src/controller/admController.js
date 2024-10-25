@@ -7,9 +7,9 @@ const endpoints = Router()
 endpoints.post('/adm', async (req, resp) => {
     try {
         let adm = req.body
-        let linhasAfetadas = await service.inserirAdmService(adm)
+        await service.inserirAdmService(adm)
 
-        resp.send(linhasAfetadas)
+        resp.send()
 
     }
     catch (err) {
