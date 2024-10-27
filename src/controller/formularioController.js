@@ -32,4 +32,18 @@ endpoints.get('/formulario', autenticar, async (req, resp) => {
     }
 })
 
+endpoints.get('/formulario/:pais', autenticar, async (req, resp) => {
+    try {
+        let pais = req.params.pais
+        let registros = await service.consultarFormularioPorPaisService(pais)
+
+        resp.send(registros)
+    }
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 export default endpoints

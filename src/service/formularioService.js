@@ -11,3 +11,9 @@ export async function consultarFormularioService() {
 
     return registros
 }
+
+export async function consultarFormularioPorPaisService(pais) {
+    let registros = await db.consultarFormularioPorPais(pais)
+
+    return registros
+}
