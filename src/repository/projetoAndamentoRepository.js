@@ -15,9 +15,9 @@ export async function inserirProjetoAndamento(projetoAndamento) {
 export async function consultarProjetoAndamento() {
     const comando = `
         SELECT  id_projeto_andamento    id,
-                ft_projeto              imagem,
                 tp_projeto              tipo,
-                ds_local                local
+                ds_local                local,
+                ft_projeto              imagem
         FROM 	
                 tb_projetos_andamento
     `
@@ -32,9 +32,9 @@ export async function consultarProjetoAndamentoRecente() {
     const comando = `
         SELECT  
                 id_projeto_andamento    id,
-                ft_projeto              imagem,
                 tp_projeto              tipo,
-                ds_local                local
+                ds_local                local,
+                ft_projeto              imagem
         FROM 	
                 tb_projetos_andamento
         WHERE   
