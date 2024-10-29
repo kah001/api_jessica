@@ -44,8 +44,13 @@ export async function consultarProjetoAndamentoRecente() {
     let linhas = await consultarProjetoAndamento();
     let ultimo = linhas.length;
 
+    
     let resposta = await con.query(comando, [ultimo]);
     let recente = resposta[0][0];
+    
+    if (recente.imagem != null) {
+        recente.imagem = recente.imagem.toString();
+    }
 
     return recente;
 }
