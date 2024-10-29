@@ -44,6 +44,8 @@ export async function consultarProjetoAndamentoRecente() {
     
     let resposta = await con.query(comando);
     let recente = resposta[0][0];
+    if(!recente) 
+        throw Error('Nenhum registro recente encontrado')
 
     if (recente.imagem != null) {
         recente.imagem = recente.imagem.toString();
