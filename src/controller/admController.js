@@ -18,7 +18,6 @@ endpoints.post('/adm', async (req, resp) => {
                 erro: 'Nenhum registro encontrado'
             })
         }
-
     }
     catch (err) {
         validarAdm(req)
