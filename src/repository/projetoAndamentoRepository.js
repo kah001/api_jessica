@@ -31,21 +31,25 @@ export async function consultarProjetoAndamento() {
 export async function consultarProjetoAndamentoRecente() {
     const comando = `
         SELECT  
-                id_projeto_andamento    id,
-                tp_projeto              tipo,
-                ds_local                local,
-                ft_projeto              imagem
+                id_projeto_andamento    as id,
+                tp_projeto              as tipo,
+                ds_local                as local,
+                ft_projeto              as imagem
         FROM 	
                 tb_projetos_andamento
-        WHERE   
-                id_projeto_andamento = ?
+        ORDER BY   
+                id_projeto_andamento DESC   
+                
     `;
     
-    let linhas = await consultarProjetoAndamento();
-    let ultimo = linhas.length;
-
-    let resposta = await con.query(comando, [ultimo]);
+    let resposta = await con.query(comando);
     let recente = resposta[0][0];
+    if(!recente) 
+        throw Error('Nenhum registro recente encontrado')
+
+    if (recente.imagem != null) {
+        recente.imagem = recente.imagem.toString();
+    }
 
     return recente;
 }

@@ -8,6 +8,8 @@ export async function inserirProjetoAndamentoService(projetoAndamento) {
 
 export async function consultarProjetoAndamentoService() {
     let registros = await db.consultarProjetoAndamento();
+    if(registros.length <= 0)
+        throw Error('Nenhum registro encontrado')
 
     return registros;
 }
@@ -20,7 +22,7 @@ export async function consultarProjetoAndamentoRecenteService() {
 
 export async function alterarProjetoAndamentoService(projetoAndamento, id) {
     let linhasAlteradas = await db.alterarProjetoAndamento(projetoAndamento, id);
-    if(linhasAlteradas <=0)
+    if(linhasAlteradas <= 0)
         throw Error('Nenhum registro encontrado')
 }
 
