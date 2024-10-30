@@ -21,6 +21,20 @@ endpoints.post('/projeto/andamento', autenticar, async (req, resp) => {
     }
 })
 
+endpoints.get('/projetos/andamento/:id', autenticar, async (req, resp) => {
+    try {
+        let id = req.params.id
+        let registros = await service.consultarProjetoAndamentoIdService(id);
+
+        resp.send(registros)
+    }
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 endpoints.get('/projetos/andamento', autenticar, async (req, resp) => {
     try {
         let registros = await service.consultarProjetoAndamentoService();
@@ -35,7 +49,7 @@ endpoints.get('/projetos/andamento', autenticar, async (req, resp) => {
 })
 
 
-endpoints.get('/projeto/andamento/recente', autenticar, async (req, resp) => {
+endpoints.get('/projeto/andamento/recente', async (req, resp) => {
     try {
         let recente = await service.consultarProjetoAndamentoRecenteService()
         resp.send(recente)
