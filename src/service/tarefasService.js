@@ -12,6 +12,12 @@ export async function consultarTarefaService() {
     return registros
 }
 
+export async function consultarTarefaPorProjetoService(id) {
+    let registros = await db.consultarTarefaPorProjeto(id)
+
+    return registros
+}
+
 export async function alterarTarefaService(tarefa, id) {
     let linhasAfetadas = await db.alterarTarefa(tarefa, id)
 

@@ -12,6 +12,31 @@ export async function inserirProjetoAndamento(projetoAndamento) {
     return info.insertId;
 }
 
+export async function consultarProjetoAndamentoId(id) {
+    const comando = `
+        SELECT  id_projeto_andamento    id,
+                tp_projeto              tipo,
+                ds_local                local,
+                ft_projeto              imagem
+        FROM 	
+                tb_projetos_andamento
+        WHERE
+                id_projeto_andamento = ?
+                `
+
+    let resposta = await con.query(comando, [id])
+    let registros = resposta[0][0]
+
+    if (!registros || registros == null)
+        throw Error('Nenhum registro recente encontrado')
+
+    if (registros.imagem != null) {
+        registros.imagem = registros.imagem.toString();
+    }
+
+    return registros;
+}
+
 export async function consultarProjetoAndamento() {
     const comando = `
         SELECT  id_projeto_andamento    id,
@@ -41,10 +66,11 @@ export async function consultarProjetoAndamentoRecente() {
                 id_projeto_andamento DESC   
                 
     `;
-    
+
     let resposta = await con.query(comando);
     let recente = resposta[0][0];
-    if(!recente) 
+
+    if (!recente || recente == null)
         throw Error('Nenhum registro recente encontrado')
 
     if (recente.imagem != null) {

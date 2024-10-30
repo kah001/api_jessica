@@ -19,7 +19,8 @@ export async function consultarFormulario() {
                 ds_email        email,
                 ds_telefone     telefone,
                 ds_pais         pais,
-                ds_mensagem     mensagem
+                ds_mensagem     mensagem,
+                dt_dia          dia
             FROM tb_formulario
     `
 
@@ -36,7 +37,8 @@ export async function consultarFormularioPorPais(pais) {
                 ds_email        email, 
                 ds_telefone     telefone,
                 ds_pais         pais,
-                ds_mensagem     mensagem
+                ds_mensagem     mensagem,
+                dt_dia          dia
             FROM tb_formulario
             WHERE ds_pais = ?
     `
