@@ -14,12 +14,26 @@ export async function inserirTarefa(tarefa) {
 
 export async function consultarTarefa() {
     const comando = `
-        SELECT id_tarefa, 
-                ds_tarefa
+        SELECT id_tarefa        id, 
+                ds_tarefa       descricao,
+                id_projeto      projeto
             FROM tb_tarefas
     `
 
     let registros = await con.query (comando)
+    let info = registros[0]
+
+    return info
+}
+
+export async function consultarTarefaPorProjeto(id) {
+    const comando = `
+        SELECT ds_tarefa    descricao
+            FROM tb_tarefas
+            WHERE id_projeto = ?
+    `
+
+    let registros = await con.query(comando, [id])
     let info = registros[0]
 
     return info

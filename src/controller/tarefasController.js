@@ -32,6 +32,20 @@ endpoints.get('/tarefa', autenticar, async (req, resp) => {
     }
 })
 
+endpoints.get('/tarefa/:id', autenticar, async (req, resp) => {
+    try {
+        let id = req.params.id
+        let registros = await service.consultarTarefaPorProjetoService(id)
+
+        resp.send(registros)
+    }
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+})
+
 endpoints.put('/tarefa/:id', autenticar, async (req, resp) => {
     try {
         let id = req.params.id
