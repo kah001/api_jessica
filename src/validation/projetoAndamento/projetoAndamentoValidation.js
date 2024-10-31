@@ -10,7 +10,7 @@ export default function validarProjetoAndamento(projetoAndamento) {
     else if(!projetoAndamento.local) {
         msg = 'Nenhum local inserido'
     }
-    if(msg != ''){
+    if(msg !== ''){
         throw Error(msg)
     } 
 }

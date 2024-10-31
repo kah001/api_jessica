@@ -4,7 +4,7 @@ import validarProjetoAndamento from '../validation/projetoAndamento/projetoAndam
 export async function inserirProjetoAndamentoService(projetoAndamento) {
     validarProjetoAndamento(projetoAndamento)
     let id = await db.inserirProjetoAndamento(projetoAndamento);
-
+    
     return id;
 }
 
@@ -12,13 +12,13 @@ export async function consultarProjetoAndamentoService() {
     let registros = await db.consultarProjetoAndamento();
     if(registros.length <= 0)
         throw Error('Nenhum registro encontrado')
-
+    
     return registros;
 }
 
 export async function consultarProjetoAndamentoIdService(id) {
     let registros = await db.consultarProjetoAndamentoId(id);
-
+    
     return registros;
 }
 
