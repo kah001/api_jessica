@@ -74,8 +74,8 @@ export async function consultarProjetoAndamentoRecente() {
         throw Error('Nenhum registro recente encontrado')
 
     if (recente.imagem != null) {
-        recente.imagem = recente.imagem.toString();
-    }
+        recente.imagem = 'data:image/jpeg;base64,' + recente.imagem.toString('base64');
+    }    
 
     return recente;
 }
