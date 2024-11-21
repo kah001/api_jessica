@@ -28,8 +28,10 @@ export async function consultarTarefa() {
 
 export async function consultarTarefaPorProjeto(id) {
     const comando = `
-        SELECT ds_tarefa    descricao
-            FROM tb_tarefas
+        SELECT 
+            id_tarefa  as  id,
+            ds_tarefa  as  descricao
+        FROM tb_tarefas
             WHERE id_projeto = ?
     `
 
