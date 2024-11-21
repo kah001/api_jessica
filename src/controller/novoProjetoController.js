@@ -1,9 +1,8 @@
 import * as service from '../service/novoProjetoService.js'
 import { Router } from "express"
-import { autenticar } from "../utils/jwt.js"
 const endpoints = Router()
 
-endpoints.post('/projeto', autenticar, async (req, resp) => {
+endpoints.post('/projeto', async (req, resp) => {
     try {
         let projeto = req.body
         let id = await service.inserirProjetoService(projeto)
@@ -19,7 +18,7 @@ endpoints.post('/projeto', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.get('/projeto', autenticar, async (req, resp) => {
+endpoints.get('/projeto', async (req, resp) => {
     try {
         let registros = await service.consultarProjetoService()
 
@@ -32,7 +31,7 @@ endpoints.get('/projeto', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.get('/projeto/:id', autenticar, async (req, resp) => {
+endpoints.get('/projeto/:id', async (req, resp) => {
     try {
         let id = req.params.id
         let registros = await service.consultarProjetoPorIdService(id)
@@ -46,7 +45,7 @@ endpoints.get('/projeto/:id', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.put('/projeto/:id', autenticar, async (req, resp) => {
+endpoints.put('/projeto/:id', async (req, resp) => {
     try {
         let id = req.params.id
         let projeto = req.body
@@ -67,7 +66,7 @@ endpoints.put('/projeto/:id', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.delete('/projeto/:id', autenticar, async (req, resp) => {
+endpoints.delete('/projeto/:id', async (req, resp) => {
     try {
         let id = req.params.id
         let linhasAfetadas = await service.deletarProjetoService(id)

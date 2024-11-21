@@ -3,7 +3,7 @@ import { Router } from "express";
 import { autenticar } from "../utils/jwt.js";
 const endpoints = Router()
 
-endpoints.post('/tarefa', autenticar, async (req, resp) => {
+endpoints.post('/tarefa', async (req, resp) => {
     try {
         let tarefa = req.body
         let id = await service.inserirTarefaService(tarefa)
@@ -19,7 +19,7 @@ endpoints.post('/tarefa', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.get('/tarefa', autenticar, async (req, resp) => {
+endpoints.get('/tarefa', async (req, resp) => {
     try {
         let registros = await service.consultarTarefaService()
 
@@ -32,7 +32,7 @@ endpoints.get('/tarefa', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.get('/tarefa/:id', autenticar, async (req, resp) => {
+endpoints.get('/tarefa/:id', async (req, resp) => {
     try {
         let id = req.params.id
         let registros = await service.consultarTarefaPorProjetoService(id)
@@ -46,7 +46,7 @@ endpoints.get('/tarefa/:id', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.put('/tarefa/:id', autenticar, async (req, resp) => {
+endpoints.put('/tarefa/:id', async (req, resp) => {
     try {
         let id = req.params.id
         let tarefa = req.body
@@ -68,7 +68,7 @@ endpoints.put('/tarefa/:id', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.delete('/tarefa/:id', autenticar, async (req, resp) => {
+endpoints.delete('/tarefa/:id', async (req, resp) => {
     try {
         let id = req.params.id
 

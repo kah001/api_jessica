@@ -1,6 +1,5 @@
 import * as service from '../service/formularioService.js'
 import { Router } from "express";
-import { autenticar } from '../utils/jwt.js';
 const endpoints = Router()
 
 endpoints.post('/formulario', async (req, resp) => {
@@ -19,7 +18,7 @@ endpoints.post('/formulario', async (req, resp) => {
     }
 })
 
-endpoints.get('/formulario', autenticar, async (req, resp) => {
+endpoints.get('/formulario', async (req, resp) => {
     try {
         let registros = await service.consultarFormularioService()
 
@@ -32,7 +31,7 @@ endpoints.get('/formulario', autenticar, async (req, resp) => {
     }
 })
 
-endpoints.get('/formulario/:pais', autenticar, async (req, resp) => {
+endpoints.get('/formulario/:pais', async (req, resp) => {
     try {
         let pais = req.params.pais
         let registros = await service.consultarFormularioPorPaisService(pais)

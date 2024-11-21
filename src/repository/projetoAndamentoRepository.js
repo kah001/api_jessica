@@ -31,8 +31,8 @@ export async function consultarProjetoAndamentoId(id) {
         throw Error('Nenhum registro recente encontrado')
 
     if (registros.imagem != null) {
-        registros.imagem = registros.imagem.toString();
-    }
+        registros.imagem = 'data:image/jpeg;base64,' + registros.imagem.toString('base64');
+    }    
 
     return registros;
 }
