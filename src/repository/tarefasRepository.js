@@ -45,11 +45,10 @@ export async function alterarTarefa(tarefa, id) {
     const comando = `
         UPDATE tb_tarefas
             SET ds_tarefa = ?
-                id_projeto = ?
             WHERE id_tarefa = ?
     `
 
-    let registros = await con.query (comando, [tarefa.descricao, tarefa.projeto, id])
+    let registros = await con.query (comando, [tarefa.descricao, id])
     let info = registros[0]
 
     return info.affectedRows
