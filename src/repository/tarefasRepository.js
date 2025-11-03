@@ -28,8 +28,10 @@ export async function consultarTarefa() {
 
 export async function consultarTarefaPorProjeto(id) {
     const comando = `
-        SELECT ds_tarefa    descricao
-            FROM tb_tarefas
+        SELECT 
+            id_tarefa  as  id,
+            ds_tarefa  as  descricao
+        FROM tb_tarefas
             WHERE id_projeto = ?
     `
 
@@ -43,11 +45,10 @@ export async function alterarTarefa(tarefa, id) {
     const comando = `
         UPDATE tb_tarefas
             SET ds_tarefa = ?
-                id_projeto = ?
             WHERE id_tarefa = ?
     `
 
-    let registros = await con.query (comando, [tarefa.descricao, tarefa.projeto, id])
+    let registros = await con.query (comando, [tarefa.descricao, id])
     let info = registros[0]
 
     return info.affectedRows

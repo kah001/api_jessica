@@ -77,13 +77,18 @@ export async function alterarProjeto(projeto, id) {
 }
 
 export async function deletarProjeto(id) {
-    const comando = `
+    const comandoTarefas = `
+        DELETE FROM tb_tarefas
+        WHERE id_projeto = ?
+    `;
+    await con.query(comandoTarefas, [id]);
+
+    const comandoProjeto = `
         DELETE FROM tb_projetos
-            WHERE id_projeto = ?
-    `
-
-    let registros = await con.query(comando, [id])
-    let info = registros[0]
-
-    return info.affectedRows
+        WHERE id_projeto = ?
+    `;
+    let registros = await con.query(comandoProjeto, [id]);
+    let info = registros[0];
+    
+    return info.affectedRows;
 }
